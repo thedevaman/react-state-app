@@ -5,7 +5,46 @@ const App = ()=>{
  const [input ,setInput] =useState('')
  const [fontSize, setFontSize] = useState(10)
  const [color, setColor] = useState('green')
-  return(
+ const [value,setValue] = useState("")
+ const [data,setData] = useState([])
+
+
+//  const studentlist1 = ['rahul','raj','Aman']
+//  const studentlist2 = ['raju','rajat','Raghav']
+//  const studentlist3 = ['rajesh','rajnish','Raman']
+//  const allStudents = [...studentlist1, ...studentlist3,...studentlist2]
+//  console.log(allStudents)
+ //console.log(...x) //spread operator(...[]) used to join to or more arrays or join two or more objects also
+ 
+//  const marks1={
+//     maths:80,
+//     english:50,
+//     hindi:40
+//  }
+
+//  const marks2={
+//   computer:60,
+//   science:70,
+//   sanskrit:90,
+//  }
+//  const allmarks={
+//   ...marks1,
+//   ...marks2
+//  }
+//  console.log(allmarks)
+//  console.log({...marks1,...marks2})
+const addList=()=>{
+  if(value.length === 0)
+  {
+    alert("please Fill the formw")
+  }else{
+  setData([
+    ...data,//oldvalue
+    value //newvalue
+  ])
+  }
+}
+ return(
     <div style={{
       minHeight: '100vh',
       background: '#ddd'
@@ -104,6 +143,38 @@ const App = ()=>{
             marginTop: 16
           }}/>
         </div>
+
+       <div>
+        <h1>Dynamic List (using useState & Array)</h1>
+        <div>
+          <input 
+          onChange={(e)=>setValue(e.target.value)}
+          placeholder='Enter Any text'
+          style={{
+            border: '1px solid black',
+            padding: 12,
+            borderRadius: 5,
+            width:350
+          }}
+          />
+          <button 
+          onClick={addList}
+          style={{
+            border:'none',
+            background:'darkorange',
+            padding:13,
+            fontWeight:'bold',
+            marginLeft:6,
+            borderRadius:5
+          }}>Add</button>
+        </div>
+        {
+        data.map((list,index)=>(
+          <li key={index}>{list}</li>
+        ))
+        }
+       </div>
+       
 
       </div>
 
