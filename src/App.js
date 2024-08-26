@@ -7,6 +7,7 @@ const App = ()=>{
  const [color, setColor] = useState('green')
  const [value,setValue] = useState("")
  const [data,setData] = useState([])
+ const [list,setList] = useState('')
 
 
 //  const studentlist1 = ['rahul','raj','Aman']
@@ -33,6 +34,8 @@ const App = ()=>{
 //  }
 //  console.log(allmarks)
 //  console.log({...marks1,...marks2})
+
+
 const addList=()=>{
   if(value.length === 0)
   {
@@ -44,6 +47,24 @@ const addList=()=>{
   ])
   }
 }
+
+
+const [student, setStudent] = useState([
+  
+])
+
+
+const deleteList = (listindex)=>{
+const copyOfArray = [...student]
+console.log(copyOfArray.splice(listindex,1))
+console.log(copyOfArray)
+setStudent(copyOfArray)
+}
+
+const createList=()=>{
+  setStudent([...student,list])
+}
+
  return(
     <div style={{
       minHeight: '100vh',
@@ -173,6 +194,20 @@ const addList=()=>{
           <li key={index}>{list}</li>
         ))
         }
+       </div>
+       
+       <div>
+        <h1>add And delete array</h1>
+        <ul>
+          {
+            student.map((list,listindex)=>(
+              <li key={listindex}>{list}<button onClick={()=>deleteList(listindex)}>Delete</button></li>
+            ))
+          }
+        </ul>
+
+        <input onChange={(e)=>setList(e.target.value)} />
+        <button onClick={createList}>Add</button>
        </div>
        
 
